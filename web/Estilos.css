@@ -1,0 +1,341 @@
+.rango{
+    float: right;
+    width: auto;
+    height: auto;
+    padding-right: 100px;
+}
+
+.contador{
+    float: right;
+    width: auto;
+    height: auto;
+    padding-right: 165px;
+}
+
+input[type=range]::-moz-range-track {
+    width: 150px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+
+.Nucleos{
+    padding-top: 20px;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.Botones{
+    height: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.SeccionCritica{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.EE{
+    box-sizing: border-box;
+    text-align: center;
+    margin: 11%;
+    margin-top: 0;
+    padding: 5px;
+    width: 79%;
+    height: 130px;
+    background: #70BD17;
+}
+
+.Listo{
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 25%;
+    height: 414px;
+    background: #33B5E5;
+}
+
+.Suspendido{
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 25%;
+    height: 414px;
+    background: #D62A2A;
+}
+
+.Bloqueado{
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 25%;
+    height: 414px;
+    background: #1B1919;
+}
+
+.Terminado{
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 25%;
+    height: 414px;
+    background: #ffee58;
+}
+
+.Nucleo{
+    float: left;
+    position: relative;
+    border: 2px solid black;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.Tabla{
+    margin: auto;
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+    border: 1px;
+    text-align: center;
+}
+
+.gant{
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 50%;
+    height: auto;
+    border: 2px solid black;
+    padding-bottom: 101px;
+}
+
+td{
+    width: 100px;
+}
+
+.SC{
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    text-align: center;
+}
+
+.header{
+    background: aliceblue;
+    border-width: 0;
+    border-color: aliceblue;
+    font-weight: bold;
+    border-collapse: collapse;
+}
+
+.Titulo{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.Pacifico{
+    font-family: 'Courgette', 'Amatic SC', 'Myriad Pro', Arial, Helvetica, sans-serif, cursive;
+    border: 0px;
+}
+
+.Grande{
+    font-size: 4em;
+}
+
+.Mediano{
+    font-size: 2em;
+}
+
+.PaddingExtra{
+    padding: 20px;
+}
+
+.Pequeño{
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.Minimal{
+    text-align: center;
+}
+
+#navigationMenu{
+    float: left;
+    padding: 0;
+}
+
+#navigationMenu li{
+    list-style: none;
+    height: 39px;
+    padding: 2px;
+    width: 40px;
+}
+
+#navigationMenu span{
+    width: 0;
+    left: 38px;
+    padding: 0;
+    position: absolute;
+    overflow: hidden;
+
+    font-family: 'Myriad Pro', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+    line-height: 39px;
+}
+
+#navigationMenu a{
+    background: url('navigation.jpg') no-repeat;
+    height: 39px;
+    width: 38px;
+    display: block;
+    position: relative;
+}
+
+#navigationMenu a:hover span{
+    width: auto;
+    padding: 0 20px;
+    overflow: visible;
+}
+
+#navigationMenu a:hover{
+    text-decoration: none;
+    -moz-box-shadow: 0 0 5px #9ddff5;
+    -webkit-box-shadow: 0 0 5px #9ddff5;
+    box-shadow: 0 0 5px #9ddff5;
+}
+
+#navigationMenu .services { background-position: -76px 0;}
+
+#navigationMenu .services:hover { background-position: -76px -39px;}
+
+#navigationMenu .services span{
+    background-color: #c86c1f;
+    color: #5a3517;
+    text-shadow: 1px 1px 0 #d28344;
+}
+
+#navigationMenu .portfolio { background-position:-114px 0;}
+
+#navigationMenu .portfolio:hover{ background-position:-114px -39px;}
+
+#navigationMenu .portfolio span{
+    background-color:#d0a525;
+    color:#604e18;
+    text-shadow:1px 1px 0 #d8b54b;
+}
+
+.img{
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 558px;
+    height: 285px;
+}
+
+.img1{
+    float: right;
+    overflow: hidden;
+    width: 215px;
+    height: 266px;
+    margin-right: 650px;
+    border: 0;
+}
+
+.recursos{
+    width: 40%;
+    height: 150px;
+    margin-left: 7px;
+}
+
+.recursos2{
+    width: 100%;
+    height: 237px;
+    text-align: center;
+}
+
+.metrica{
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 50%;
+    height: auto;
+    border: 2px solid black;
+    padding-bottom: 10px;
+}
+
+.metricas{
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    border: 2px solid black;
+    padding-top: 30px;
+}
+
+.content-box-blue {
+    background-color: #33B5E5;
+    border: 1px solid #33B5E5;
+    width: 162px;
+    height: 70px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+.content-box-green {
+    background-color: #70BD17;
+    border: 1px solid #70BD17;
+    width: 162px;
+    height: 70px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+.content-box-white {
+    background-color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    width: 162px;
+    height: 70px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+.content-box-red {
+    background-color: #E25656;
+    border: 1px solid #E25656;
+    width: 162px;
+    height: 70px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+.content-box-black {
+    background-color: #1B1919;
+    border: 1px solid #1B1919;
+    width: 162px;
+    height: 70px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}

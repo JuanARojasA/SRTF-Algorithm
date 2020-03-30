@@ -1,0 +1,263 @@
+<html>
+    <head>
+        <title>SJF</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="Estilos.css"/>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster"/>
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="bootstrap-theme.min.css"/>
+        <link href="estilosGantt.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div class="Titulo">
+            <legend class="Pacifico Grande">Simulador Algoritmo Shortest Job First</legend>
+            <div class="rango">Barra de Velocidad
+                <input id="slider" type="range" min="0.25" max="2" value="1" step="0.25" onchange="showValue()"/>
+                <span id="range">1x</span>
+            </div>
+        </div>
+        <div class="contador Pacifico Pequeño" id="contador">0</div>
+        <div id="main" class="Agregar">
+            <div class="img">
+                <ul id="navigationMenu">
+                    <li>
+                        <a class="services" href="#">
+                            <span>
+                                Procesos
+                                <form id="formProcesos" name="formProcesos">
+                                    <p>
+                                        <input id="nombreProceso" type="text" name="nombreProceso" placeholder="Nombre">
+                                        <input id="tiempoVida" type="text" name="tiempoVida" placeholder="Tiempo de Vida">
+                                    </p>
+                                    <div id="escogerRecursos">
+                                        <select id="combRecursos" class="form-control"></select>
+                                        <p></p>
+                                    </div>
+                                    <p></p>
+                                    <label>Procesador</label>
+                                    <select id="escogerProcesador" name="escogerProcesador">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                    <button id="enviarProceso" class="btn btn-danger" type="button" onclick="sendP()">Agregar Proceso</button>
+                                </form>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="portfolio" href="#">
+                            <span>
+                                Recursos
+                                <form id="formularioRecurso" name="formularioRecurso">
+                                    <input type="text" name="nombreRecurso" id="nombreRecurso" placeholder="Nombre">
+                                    <button class="btn btn-warning" type="button" onclick="sendR()">Crear</button>
+                                </form>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="img1">
+            <img src="ud.png" class="img-thumbnail bar">
+            <div class="Botones">
+                <button id="conectar" class="btn btn-success" type="button" onclick="openSocket(); pedirDatos();">Conectar</button>
+                <button id="conectar" class="btn btn-warning" type="button" onclick="Iniciar(); MetricaGantt();">Iniciar</button>
+                <button id="conectar" class="btn btn-danger" type="button" onclick="closeSocket();">Terminar</button>
+            </div>
+        </div>
+        <div class="SeccionCritica">
+            <div class="SC">
+                <legend class="Pacifico Mediano">Núcleo 1</legend>
+                <div class="EE">
+                    <table id="enEjecucion1" class="Tabla Pacifico Pequeño">
+                        <tr class="header"><td>PID</td><td>Nombre</td><td>TTL</td><td>Recurso</td></tr>
+                        <tr><td></td><td></td><td></td><td></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="Nucleos">
+            <div id="n1" class="Nucleo">
+                <div class="Listo">
+                    <legend class="Pacifico Minimal">Listo</legend>
+                    <table id="listos1" class="Tabla Pacifico Pequeño">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+                <div class="Suspendido">
+                    <legend class="Pacifico Minimal">Suspendido</legend>
+                    <table id="suspendidos1" class="Tabla Pacifico Pequeño">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+                <div class="Bloqueado">
+                    <legend class="Pacifico Minimal" style="color: #f8f8f8;">Bloqueado</legend>
+                    <table id="bloqueados1" class="Tabla Pacifico Pequeño" style="color: #f8f8f8;">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+                <div class="Terminado">
+                    <legend class="Pacifico Minimal">Terminado</legend>
+                    <table id="terminados1" class="Tabla Pacifico Pequeño">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="gant">
+            <h2><p class=" text-center pacifico">Gantt Procesador #1</p></h2>
+            <div id="gant1" style="padding-right: 20px;">
+                <table id="Gantt1" class="Tabla Pacifico Minimal"></table>
+            </div>
+        </div>
+        <div class="metrica">
+            <h2><p class=" text-center pacifico" style="padding-bottom: 10px">Métrica Procesador #1</p></h2>
+            <table class="Tabla Pacifico Minimal" id="metrica1">
+                <tr><td>Nombre</td><td>TTL</td><td>TR</td><td>TE</td><td>P</td><td>Eficiencia</td></tr>
+            </table>
+            <h4 style="width: 100%; text-align: center; padding-top: 20px; padding-left: 20px;">
+                <p id="rendimiento1" class="text-center pacifico" style="float: left;width: auto;">El rendimiento en el núcleo 1 fue del -, por lo tanto, se puede concluir que el algoritmo es -</p>
+                <div id="eficiencia1" style="display: none;">0</div>
+            </h4>
+        </div>
+        <div class="SeccionCritica">
+            <div class="SC">
+                <legend class="Pacifico Mediano">Núcleo 2</legend>
+                <div class="EE">
+                    <table id="enEjecucion2" class="Tabla Pacifico Pequeño">
+                        <tr class="header"><td>PID</td><td>Nombre</td><td>TTL</td><td>Recurso</td></tr>
+                        <tr><td></td><td></td><td></td><td></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="Nucleos">
+            <div id="n2" class="nucleo">
+                <div class="Listo">
+                    <legend class="Pacifico Minimal">Listo</legend>
+                    <table id="listos2" class="Tabla Pacifico Pequeño">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+                <div class="Suspendido">
+                    <legend class="Pacifico Minimal">Suspendido</legend>
+                    <table id="suspendidos2" class="Tabla Pacifico Pequeño">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+                <div class="Bloqueado">
+                    <legend class="Pacifico Minimal" style="color: #f8f8f8;">Bloqueado</legend>
+                    <table id="bloqueados2" class="Tabla Pacifico Pequeño" style="color: #f8f8f8;">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+                <div class="Terminado">
+                    <legend class="Pacifico Minimal">Terminado</legend>
+                    <table id="terminados2" class="Tabla Pacifico Pequeño">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="gant">
+                <h2><p class=" text-center pacifico">Gantt Procesador #2</p></h2>
+                <div id="gant1" style="padding-right: 20px;">
+                    <table id="Gantt2" class="Tabla Pacifico Minimal"></table>
+                </div>
+            </div>
+            <div class="metrica"s>
+                <h2><p class=" text-center pacifico" style="padding-bottom: 10px;">Métrica Procesador #2</p></h2>
+                <table class="Tabla Pacifico Minimal" id="metrica2">
+                    <tr><td>Nombre</td><td>TTL</td><td>TR</td><td>TE</td><td>P</td><td>Eficiencia</td></tr>
+                </table>
+                <h4 style="width: 100%; text-align: center; padding-top: 20px; padding-left: 20px;">
+                    <p id="rendimiento2" class="text-center pacifico" style="float: left;width: auto;">El rendimiento en el núcleo 2 fue del -, por lo tanto, se puede concluir que el algoritmo es -</p>
+                    <div id="eficiencia2" style="display: none;">0</div>
+                </h4>
+            </div>
+        </div>
+        <div class="SeccionCritica">
+            <div class="SC">
+                <legend class="Pacifico Mediano">Núcleo 3</legend>
+                <div class="EE">
+                    <table id="enEjecucion3" class="Tabla Pacifico Pequeño">
+                        <tr class="header"><td>PID</td><td>Nombre</td><td>TTL</td><td>Recurso</td></tr>
+                        <tr><td></td><td></td><td></td><td></td></tr>
+                    </table>
+                </div>
+            </div> 
+        </div>
+        <div class="Nucleos">
+            <div id="n3" class="nucleo">
+                <div class="Listo">
+                    <legend class="Pacifico Minimal">Listo</legend>
+                    <table id="listos3" class="Tabla Pacifico Pequeño">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+                <div class="Suspendido">
+                    <legend class="Pacifico Minimal">Suspendido</legend>
+                    <table id="suspendidos3" class="Tabla Pacifico Pequeño">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+                <div class="Bloqueado">
+                    <legend class="Pacifico Minimal" style="color: #f8f8f8;">Bloqueado</legend>
+                    <table id="bloqueados3" class="Tabla Pacifico Pequeño" style="color: #f8f8f8;">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+                <div class="Terminado">
+                    <legend class="Pacifico Minimal">Terminado</legend>
+                    <table id="terminados3" class="Tabla Pacifico Pequeño">
+                        <tr><td>PID</td><td>Nom</td><td>TTL</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="gant">
+                <h2><p class="text-center pacifico">Gantt Procesador #3</p></h2>
+                <div id="gant1" style="padding-right: 20px;">
+                    <table id="Gantt3" class="Tabla Pacifico Minimal"></table>
+                </div>
+            </div>
+            <div class="metrica">
+                <h2><p class=" text-center pacifico" style="padding-bottom: 10px;">Métrica Procesador #3</p></h2>
+                <table class="Tabla Pacifico Minimal" id="metrica3">
+                    <tr><td>Nombre</td><td>TTL</td><td>TR</td><td>TE</td><td>P</td><td>Eficiencia</td></tr>
+                </table>
+                <h4 style="width: 100%; text-align: center; padding-top: 20px; padding-left: 20px;">
+                    <p id="rendimiento3" class="text-center pacifico" style="float: left;width: auto;">El rendimiento en el núcleo 3 fue del -, por lo tanto, se puede concluir que el algoritmo es -</p>
+                    <div id="eficiencia3" style="display: none;">0</div>
+                </h4>
+            </div>
+        </div>
+        <div class="metricas">
+            <h2><p class=" text-center pacifico" style="padding-bottom: 10px;">Métrica Completa</p></h2>
+            <h3>
+                <p class=" text-center pacifico" style="padding-bottom: 10px;">Cantidad total de procesos atendidos :</p>
+                <p id="atendidos" class=" text-center pacifico">0</p>
+            </h3>
+            <h3>
+                <p class=" text-center pacifico" style="padding-bottom: 10px;">Cantidad total de procesos que han entrado a suspendidos :</p>
+                <p id="suspendidos" class=" text-center pacifico">0</p>
+            </h3>
+            <h3>
+                <p class=" text-center pacifico" style="padding-bottom: 10px;">Cantidad total de procesos que han entrado a bloqueados :</p>
+                <p id="bloqueados" class=" text-center pacifico">0</p>
+            </h3>
+            <h3>
+                <p class=" text-center pacifico" style="padding-bottom: 10px;">Cantidad total de procesos que ya terminaron su ejecución :</p>
+                <p id="terminados" class=" text-center pacifico">0</p>
+            </h3>
+            <h3 style="width: 100%; text-align: center; padding-top: 20px; padding-left: 20px;">
+                <p id="rendimientoGeneral" class="text-center pacifico" style="width: auto;">El rendimiento General fue del -, por lo tanto, se puede concluir que el algoritmo es -</p>
+            </h3>
+        </div>
+        <script type="text/javascript" src="websocketN1.js"></script>
+        <div id="idProcesoActual" style="display: none;">1</div>
+    </body>
+</html>
