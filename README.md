@@ -1,2 +1,1 @@
-# ColaSRTF
- 
+# SRTF Algorithm
